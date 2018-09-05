@@ -10,16 +10,14 @@ const router = express.Router();
 router.use(orderController.enableCors);
 router.use('/up', expressHealthcheck());
 router.get('/version', versionHealthcheck);
-router.get('/order/new/:userId', orderController.getActiveOrder);
-router.get('/order/get/:orderId', orderController.getOrder);
-// router.post('/order/update', orderController.updateOrderDetails);
-router.get('/orders/user/:userId', orderController.list);   
-router.get('/order/status', orderController.getStatus);
-router.post('/order/status/:status', orderController.updateStatus);
-router.post('/order/cart/add', orderController.addToCart);
+router.get('/order/active/:userId', orderController.getActiveOrder);
+router.get('/order/:orderId', orderController.getOrder);
+router.get('/orders/:userId', orderController.list);   
+router.put('/order/status/:status', orderController.updateStatus);
+router.post('/order/cart', orderController.addToCart);
 router.post('/order/cart/remove', orderController.removeFromCart);
 
-// depricated
+// deprecated
 router.post('/order/create', orderController.createOrder);
 
 module.exports = router;
